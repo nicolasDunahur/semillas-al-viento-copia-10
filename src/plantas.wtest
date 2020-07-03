@@ -1,0 +1,30 @@
+import plantas.*
+
+test "Menta grande - Espacio que ocupa y da semillas" {
+	const mentita = new Menta(altura = 1)
+	assert.equals(3, mentita.espacioQueOcupa())
+	assert.that(mentita.daNuevasSemillas())
+}
+
+
+test "Menta chica - no da Semillas" {
+	const mentita = new Menta(altura = 0.3)
+	assert.equals(0.9,mentita.espacioQueOcupa())
+	assert.that(not mentita.daNuevasSemillas())
+}
+
+test "Quinoa- da Semillas por anio" {
+	const Quinoita = new Quinoa(espacioQueOcupa = 0.2, anioDeObtencion = 2010)
+	assert.that(Quinoita.daNuevasSemillas())
+}
+
+test "Quinoa- da Semillas por espacio " {
+	const Quinoita = new Quinoa(espacioQueOcupa = 0.9, anioDeObtencion = 2003)
+	assert.that(Quinoita.daNuevasSemillas())
+}
+
+test "Soja - Horas de sol - chequear between" {
+	const monsa1 = new Soja(altura = 0.8)
+	assert.equals(8,monsa1.horasDeSolTolera())
+	
+}

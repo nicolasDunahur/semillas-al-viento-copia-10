@@ -1,0 +1,33 @@
+import plantas.*
+import parcelas.*
+
+test "Parcela - superficie y cantidad maxima de plantas" {
+	const colombiana = new Parcela(ancho = 20,largo=1,horasDeSolQueRecibeDia=10)
+	assert.equals(20, colombiana.superficie())
+	assert.equals(4,colombiana.cantMaximaDePlantasQueTolera())
+}
+
+test "Parcela - 4 de soja sin complicacion" {
+	const monsa1 = new Soja(altura = 2)
+	const monsa2 = new Soja(altura = 2)
+	const monsa3 = new Soja(altura = 2)
+	const monsa4 = new Soja(altura = 2)
+	const colombiana = new Parcela(ancho = 20,largo=1,horasDeSolQueRecibeDia=10,
+		plantasQueTiene = #{monsa1, monsa2, monsa3} )
+	
+	colombiana.plantar(monsa4)
+	assert.equals(20, colombiana.superficie()())
+	assert.that(not colombiana.tieneComplicaciones())
+}
+
+test "Parcela - superficie y cantidad maxima de plantas - Error" {
+	const monsa1 = new Soja(altura = 2)
+	const monsa2 = new Soja(altura = 2)
+	const monsa3 = new Soja(altura = 2)
+	const monsa4 = new Soja(altura = 2)
+	const monsa5 = new Soja(altura = 2)
+	const pampa = new Parcela(ancho = 20,largo=1,horasDeSolQueRecibeDia=10,
+		plantasQueTiene = #{monsa1, monsa2, monsa3,monsa4} )
+		
+	assert.equals(20, pampa.plantar(monsa5))
+}
